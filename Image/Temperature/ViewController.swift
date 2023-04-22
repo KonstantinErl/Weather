@@ -3,8 +3,6 @@ import SnapKit
 import CoreLocation
 
 class ViewController: UIViewController {
-//    let mapButton = UIButton(type: .system)
-//    let searchButton = UIButton(type: .system)
     
     let cityLabel = UILabel()
     let temperLabel = UILabel()
@@ -47,34 +45,11 @@ class ViewController: UIViewController {
         view.addSubview(temperLabel)
         view.addSubview(descriptionLabel)
         
-//        weatherImageView.addSubview(cityLabel)
-//        weatherImageView.addSubview(temperLabel)
-//        weatherImageView.addSubview(descriptionLabel)
-//        weatherImageView.addSubview(mapButton)
-//        weatherImageView.addSubview(searchButton)
-        
         weatherImageView.snp.makeConstraints { make in
-            make.height.equalTo(50)
+            make.height.width.equalTo(50)
             make.top.equalTo(temperLabel.snp.bottom)
-            make.leading.equalTo(view.snp.leading).offset(10)
-            make.trailing.equalTo(view.snp.trailing).offset(-10)
+            make.centerX.equalTo(view.snp.centerX)
         }
-        
-        
-        
-//        mapButton.snp.makeConstraints { make in
-//            make.height.equalTo(30)
-//            make.width.equalTo(30)
-//            make.top.equalTo(weatherImageView.snp.top).offset(5)
-//            make.trailing.equalTo(searchButton.snp.leading).offset(-10)
-//        }
-        
-//        searchButton.snp.makeConstraints { make in
-//            make.height.equalTo(30)
-//            make.width.equalTo(30)
-//            make.top.equalTo(weatherImageView.snp.top).offset(5)
-//            make.trailing.equalTo(weatherImageView.snp.trailing).offset(-7)
-//        }
         
         cityLabel.snp.makeConstraints { make in
             make.height.equalTo(60)
@@ -95,7 +70,6 @@ class ViewController: UIViewController {
             make.width.equalTo(300)
             make.centerX.equalTo(view.snp.centerX)
             make.top.equalTo(weatherImageView.snp.bottom).offset(10)
-//            make.bottom.equalTo(weatherImageView.snp.bottom).offset(-50)
         }
         
         tableView.snp.makeConstraints { make in
@@ -149,14 +123,14 @@ class ViewController: UIViewController {
         if let w = currentWeather {
             temperLabel.text = String(format: "%.1f", w.currentConditions.temp)
             descriptionLabel.text = w.currentConditions.conditions
-//            updateWeatherImage(condition: w.currentConditions.icon)
+            updateWeatherImage(condition: w.currentConditions.icon)
         }
         
         tableView.reloadData()
     }
     
     func updateWeatherImage(condition: String) {
-        var image: UIImage = UIImage(named: "sun")!
+        var image: UIImage = UIImage(named: "sunny")!
         if condition == "rain" {
             image = UIImage(named: "rain")!
         } else if condition == "snow" {
